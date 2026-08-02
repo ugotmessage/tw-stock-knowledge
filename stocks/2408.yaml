@@ -1,0 +1,49 @@
+schema_version: "1.0"
+code: "2408"
+name: 南亞科
+market: TWSE
+industry_status: listed
+summary: 台灣記憶體製造商，主要產品屬於 DRAM 類別。
+
+tags:
+  industry:
+    - 半導體
+    - 記憶體
+  product:
+    - DRAM
+    - DDR4
+    - DDR5
+  technology: []
+  application:
+    - PC
+    - 伺服器
+    - 消費電子
+  theme:
+    - 漲價
+    - 庫存回補
+  supply_chain:
+    - 中游製造
+  characteristic:
+    - 景氣循環
+    - 高資本支出
+    - 高營運槓桿
+  risk:
+    - DRAM報價下跌
+    - 資本支出壓力
+
+theme_relations:
+  - theme: 記憶體漲價
+    relation_type: direct
+    reason: 公司直接生產 DRAM，產品報價變動與營運表現具有直接關聯。
+    confidence: high
+    source_ids: []
+
+related_stocks:
+  - code: "2344"
+    name: 華邦電
+    relation: 同屬記憶體產業，但產品組合與市場定位不同。
+
+sources: []
+notes:
+  - 此檔案為初始格式範例，後續應補上公司官方資料來源與更完整的產品分類。
+updated_at: "2026-08-02"
