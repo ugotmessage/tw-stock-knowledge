@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ugotmessage/tw-stock-knowledge/schemas/stock.schema.json",
+  "title": "Taiwan Stock Knowledge Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "code", "name", "market", "summary", "tags", "updated_at"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "code": {"type": "string", "pattern": "^[0-9]{4}$"},
+    "name": {"type": "string", "minLength": 1},
+    "market": {"enum": ["TWSE", "TPEx", "ESB"]},
+    "industry_status": {"enum": ["listed", "delisted", "suspended"]},
+    "summary": {"type": "string", "minLength": 1},
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "website": {"type": "string", "format": "uri"},
+        "headquarters": {"type": "string"}
+      }
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["industry", "product", "technology", "application", "theme", "supply_chain", "characteristic", "risk"],
+      "properties": {
+        "industry": {"$ref": "#/$defs/stringArray"},
+        "product": {"$ref": "#/$defs/stringArray"},
+        "technology": {"$ref": "#/$defs/stringArray"},
+        "application": {"$ref": "#/$defs/stringArray"},
+        "theme": {"$ref": "#/$defs/stringArray"},
+        "supply_chain": {"$ref": "#/$defs/stringArray"},
+        "characteristic": {"$ref": "#/$defs/stringArray"},
+        "risk": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "theme_relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["theme", "relation_type", "reason", "confidence"],
+        "properties": {
+          "theme": {"type": "string", "minLength": 1},
+          "relation_type": {"enum": ["direct", "indirect", "market_association"]},
+          "reason": {"type": "string", "minLength": 1},
+          "confidence": {"enum": ["high", "medium", "low"]},
+          "source_ids": {"$ref": "#/$defs/stringArray"}
+        }
+      }
+    },
+    "related_stocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "name", "relation"],
+        "properties": {
+          "code": {"type": "string", "pattern": "^[0-9]{4}$"},
+          "name": {"type": "string", "minLength": 1},
+          "relation": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "url", "publisher", "accessed_at", "source_type"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "format": "uri"},
+          "publisher": {"type": "string", "minLength": 1},
+          "published_at": {"type": "string", "format": "date"},
+          "accessed_at": {"type": "string", "format": "date"},
+          "source_type": {"enum": ["company", "exchange", "government", "industry", "media", "broker", "community"]}
+        }
+      }
+    },
+    "notes": {"$ref": "#/$defs/stringArray"},
+    "updated_at": {"type": "string", "format": "date"}
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
