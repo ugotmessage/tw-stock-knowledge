@@ -26,14 +26,16 @@ schema_version: "1.0"
 code: "2408"
 name: 南亞科
 market: TWSE
-summary: 台灣主要 DRAM 製造商，營運與 DRAM 報價及產能利用率高度相關。
+summary: 台灣主要 DRAM 製造商。
 tags:
   industry: [半導體, 記憶體]
   product: [DRAM, DDR4, DDR5]
+  technology: []
   application: [PC, 伺服器, 消費電子]
-  theme: [記憶體漲價, 庫存回補]
-  characteristic: [景氣循環, 高營運槓桿]
-  risk: [DRAM 報價下跌, 資本支出壓力]
+  theme: [漲價, 庫存回補]
+  supply_chain: [中游製造]
+  characteristic: [景氣循環, 高資本支出, 高營運槓桿]
+  risk: [DRAM報價下跌, 資本支出壓力]
 updated_at: "2026-08-02"
 ```
 
